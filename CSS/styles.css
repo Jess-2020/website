@@ -1,0 +1,361 @@
+body {
+  color: #40514E;
+  margin: 0;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+/*This (text-align:center;) works as long as we've got an inline block element such as our images
+or if we'v got these full width block elements like our h1 and p tags,
+which are going from left edge to the right edge.
+if go to the code and change its width to 10%
+h1{
+margin-top:0;
+width:10%;
+}
+then h1 will no longer be centered aligned despite the fact that it's still
+inside the body which is asking for text align to be center.
+so what do we do in this case?
+the other way of centering an element is by using the margin.
+There is a value called auto which when applied with center the element either
+vertically or horizontally. so in this case if we look for horizontal centering,
+then we set margin top =0, margin right=auto, margin bottom=0, margin left=auto.
+h1{
+width:10%;
+margin:0 auto 0 auto;
+}
+now the element, despite being only 10% of the width of the screen,is now centered
+in the middle of the webpage. the top and bottom margins were set to be 0 by us,
+&the left & right are set automatically to whatever amount it needs to be in
+order to keep it in the center.
+RECAP: text-align center inside the container, or the parent element, will center
+everything inside that doesn't have a width set.
+If it is a block element and it has a width set, then you're going to have to
+center it using this auto value in the margin.
+in this case, we can also shorten this by saying that the top and bottom needs
+to be zero and the left and right needs to be auto
+h1{
+width:10%;
+margin:0 auto;
+}
+and that is only circle shorthand, it will not change how the webpage look at all.
+
+Added later by myself: see the example of .skill-row. I think once i set its
+width to 50%, I can either use auto for margin, or set the skill-row div's display
+as "inline-block(it was block originally)" to have it allined at the center.
+.skill-row{
+  display: inline-block;
+  width: 50%;
+}
+
+.skill-row{
+  margin:auto;
+  width: 50%;
+}
+Angela used auto as she instructed.she also add 100px margin at top and bottom
+.skill-row{
+  margin:100px auto 100px auto;
+  width: 50%;
+}
+ */
+h1 {
+  font-size: 5.625rem;
+  /*font-size:90px; this is not dynamic.when user change setting-apperanc-fontsize
+  to large or small, its fontsize won't change with other contents. to make the fontsize dynamic
+  two options.
+  Option 1: use percentage instead of pixels.b/c 100%-16px, if we want 90px,
+  then that is 562.5%
+  h1{
+  font-size:562.5%
+}
+option 2: use a unit called "em" (not the <em> </em> html tag in order to emphasize
+a section of text,by making the text italicized). The font size em originally meant
+the width of the capital letter M. 1em mean 1*the width of captial letter M.
+In modern days, 1em=16px,
+so: 16px = 100% = 1em  so 90px = 5.625em, and we can write:
+h1{
+font-size:5.625em
+}
+Note: when you use em or %, that font size is inherited.if we specify in the body
+body{
+font-size:2em;
+}
+then in h1, we leave the font-size as 5.625em
+h1{
+font-size:5.625em
+}
+then h1 font size will be gigantic,this is b/c the fontsize gets inherited and
+added on top of whatever it got from its parents. the parent of the h1 is the body here,
+b/c h1 is contained inside the body. In the body we said the fontsize should be 2em
+across the entire body of the website. when it gets to the h1 it's already got that
+2em applied, and then it adds that 5.625em on top of the 2em. This is exactly
+the same with %, if we set body
+body{
+font-size:200%
+}
+then h1:
+h1{
+fontsize:562.5%;
+}
+we'd get gigantic letters again as the body and h1 fontsize add up.
+However, if we set body's fontsize as 20px, and h1 fontsize as 90px, h1's fontsize
+will showup just as 90px, won't add that 20px set in the body.It dowa not matter
+what its parent's font size was, b/c these are static sizes.
+if body fontsize set as 200% and h1 as 5.625em, they'd add up too.
+
+So in CSS3, there is something called rem, that refers to the root em. that means,
+ignore all of the parent's seetings for the font size & just set it to this relative
+to the root. so it doen't matter its parents' fondsize settings, it will be
+5.625*16px as long as we use "rem" instead of "em" Angela suggest using rem
+for fontsize. However she prefers using pixels for margins
+  */
+  margin: 50px auto 0 auto;
+  font-family: 'Sacramento', cursive;
+  color: #66BFBF;
+
+  /*the prefered way to specify line height is to give a single value w/o any units.
+  h1{
+  line-height: 2;
+  } */
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: #66BFBF;
+  padding: 10px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #11999E;
+}
+
+p{
+  line-height: 2;
+}
+
+hr{
+  border: dotted #EAF6F6 6px;/*means:border has dotted style,grey color& 6 px in width
+  then we'd get two borders of one above & one below & enclosing a zero pix height horizontal rule.
+  so we need to set bottom-bottom to none to get rid of the bottom border to only have a single line*/
+  border-bottom: none;
+  /* the next thing is to change its width. we want a much narrow width.We want it only to be
+  about 4% of the width.It's important to use percent here so that it scales when website scales.*/
+  width: 4%;
+  /*finally we need to give the horizonal rule a margin b/c at the moment it's far too close to
+  everything else. She wants it to have 100px of margin-top, 100px of margin-bottom;
+  & she wants it to be centered in the middle. */
+  margin: 100px auto; /*top & bottom 100px,left&right auto,so that we keep it centered in the middle.*/
+
+
+  /*this is that i did. the code works too.
+  border-style: dotted none none;
+  border-width: 5px;
+  border-color: #EAF6F6;
+  width: 5%;
+  margin-top: 50px;
+  margin-bottom: 50px;*/
+}
+
+a{
+  color: #11999E;
+  font-family: 'Montserrat',sans-serif;
+  margin:100px 20px;
+  /*the brower automatically makes it underlined for all anchor tags. Angela wants to
+  get rid of this underline,she can do that by changing the text-decoration to none (the default
+  for text-decoration is "underline") */
+  text-decoration: none;
+  /*we want to show that these links are clickable by making it have a diffent color when we
+  rollover it. So we can target that using the hover state of the anchor tag,see below
+  a:hover{
+
+  }
+
+  to lear more, check out the pseudo classes a few lessons ago on the CSS selectors. */
+}
+
+a:hover{
+  color:#EAF6F6;
+}
+
+
+
+.top-container {
+  background-color: #E4F9F5;
+  position: relative;
+  padding-top: 100px;
+}
+
+.middle-container {
+  margin:100px 0;
+}
+
+.bottom-container {
+  background-color: #66BFBF;
+  /*why is there this gap btw the bottom of our page & the bottom of our footer?
+  reason: if "inspect" & hover that <p> </p> for the last copyright message,you can see
+  it got a large margin 16 px(1 em) from the top and from the bottom,that came automatically
+  from the user agent stylesheet which comes from the brower.
+  we can either get rid of that padding(margin?), or we can pad out our footer a little more,
+  and make it a little bit taller so that it encompasses that padding(margin?) for
+  the paragraph tag. see below  */
+  padding: 50px 0 20px;
+  /*padding,50px up top, 0 left&right, 20px at the bottom,then that should be more than
+  enough to cover the 16px which is the 1 em padding(margin?) for our paragraph. After refresh
+  you'd see our footer goes all the way down to the bottom & there is now enough space for that
+  padding(margin?) to be included inside the footer rather than outside the footer.   */
+}
+
+.data {
+  text-decoration: underline;
+}
+
+/*right now the bottom cloud is set as absolute position.
+in order to position the bottom cloud relative to something, one of its parents
+has to have its position set as relative. and if we don't,then it will be
+relative to the body. In our case, we want to position our bottom cloud relative
+to the entire top container.So we need to the set the position of our top container
+to "relative".
+.top-container{
+  background-color: #E4F9F5;
+  position:relative;
+}
+We also give top container a little padding at the top,so we
+can push down the top cloud and all these contents down by a little bit so it's
+not all stuck at the top of the page. To do that we can add a padding top of 100 px
+and that just push everything down a little bit.
+Note: margin is outside the border, and it is the distance btw two items.
+Padding is inside the border,it's the distance btw the text&border.so here we
+add padding instead of margin.
+.top-container{
+  background-color: #E4F9F5;
+  position:relative;
+  padding-top: 100px;
+}
+ */
+
+ .intro{
+   width: 30%;
+   /*this means the width is 30% of its parent container, which is the middle container.
+   (why I think its parent container is the "profile"div?)
+   However after chaning the width, it became left aligned,no longer in the center of the web page.
+   That's b/c it's no longer edge to edge & we now have to set the margin to auto in order to
+   get it to be centered in the web page. */
+   margin: auto;
+ }
+
+
+.bottom-cloud {
+  position: absolute;
+  left: 250px;
+  bottom: 300px;
+}
+
+.top-cloud {
+  position: absolute;
+  right: 300px;
+  top: 40px;
+}
+
+
+.footer-link{
+  color: #11999E;
+}
+
+.skill-row{
+  margin:100px auto 100px auto;
+  width: 50%;
+  text-align: left;
+  line-height: 2;
+}
+
+.chillies{
+  width: 25%;
+  float: left;
+  margin-right: 30px;
+}
+/*width 25%: the image is scaled down based on the width of their parent which in this case
+is the skill-row,which itself is only 50% the width of the entire page ;
+float: to make the h3 and p to wrap around, with the image float on the left;
+margin-right: make a 30px margin bwt the image and the text and title.
+note: only use float for what it's meant, which is wrapping text around a certain
+element, and don't use it for positioning.  For positioning, use relative/absolute
+positioning,or using the margin,the padding. & to leave the float property only for
+the cases of wrapping text. you'd get less trouble.
+Extra Note: sometimes, when you float an element,you might not want all of the text
+to be wrapped around it.example,you may only want that title to wrap around the image
+& to be on the right of the image, then we can actually use another property to make sure
+the text does not wrap and end up at the bottom over here below the image.& that property
+is called "clear"
+go back to index.html, and give <p> </p> a class called "how-to-use-clear" to demonstrate.
+see the code below:we want to use the clear property to clear its left side then
+that prevent it from wraping anything on the left.
+clear is almost like the anti float, to make sure its left margin is clear.
+in index.html, give it a class;
+<p class="how-to-use-clear">Spicy Thai Food; Spicy Shusi Rolls; Hot Papper Soup; Thai Tom; Vietman Spicy Beef Pho.</p>
+in CSS:
+.how-to-use-clear{
+  clear: left;
+}
+
+*/
+
+.computer{
+  width: 25%;
+  float: right;
+  margin-left: 30px;
+}
+
+
+.profile{
+  color: #40514E;
+}
+
+.contact-message{
+  width: 40%;
+  margin:40px auto 60px;
+  /*3 element circle rule.40px from the top,auto for the left & right (so text is centered).
+  60px for the bottom.   */
+}
+
+
+.btn {
+  background: #11cdd4;
+  background-image: -webkit-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -moz-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -ms-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -o-linear-gradient(top, #11cdd4, #11999e);
+  background-image: linear-gradient(to bottom, #11cdd4, #11999e);
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: 'Merriweather', serif;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #30e3cb;
+  background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: -ms-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
+  text-decoration: none;
+}
+
+.copyright{
+  color: #EAF6F6;
+  font-size: 0.75rem;
+  /*this is to make the letters lot smaller.we change font size to 0.75 rem,that is
+  75% of 16 px. Notice: no space btw 0.75 & rem or the brower won't recognize.
+  And finally we want to give a little padding from the top and bottom. */
+  padding: 20px 0;
+  /*want to give a little more padding from the top and the bottom.
+  so change its padding to 20 px top and bottom and zero pix left and right.  */
+
+}
